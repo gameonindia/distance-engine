@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  distance-engine-1:
+    image: israelhikingmap/graphhopper:6.2
+    build: ./graphhopper
+    environment:
+      PBF_DATA_URL: https://download.openstreetmap.fr/extracts/asia/india/karnataka-latest.osm.pbf
+    command: --input /graphhopper/karnataka.pbf --host 0.0.0.0
+    networks:
+      - distance_network
+
+networks:
+  distance_network:
+    external:
+      name: distance_network
